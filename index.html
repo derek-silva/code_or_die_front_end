@@ -31,10 +31,6 @@
 			}
 
 			var map = new google.maps.Map(document.getElementById('map'), options);
-
-			google.maps.event.addListener(map, 'click', function (event) {
-				addMarker({ coords: event.latLng });
-			});
 		}
 	</script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0Qt4jCMA75sX8axKugOR-eAmvnw_x8zU&callback=initMap"
