@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	<title>Code Or Die!!</title>
+	<style>
+		#map {
+			height: 400px;
+			width: 100%;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="map"></div>
+
+	<script>
+		function initMap() {
+			var options = {
+				zoom: 12,
+				center: { lat: 29.7604, lng: -95.3698 }
+			}
+
+			var map = new google.maps.Map(document.getElementById('map'), options);
+
+			google.maps.event.addListener(map, 'click', function (event) {
+				addMarker({ coords: event.latLng });
+			});
+		}
+	</script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0Qt4jCMA75sX8axKugOR-eAmvnw_x8zU&callback=initMap"
+	 async defer></script>
+	<script src="app.js"></script>
+</body>
+
+</html>
