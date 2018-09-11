@@ -3,7 +3,6 @@ const URL = `http://localhost:3000/users`;
 
 // Event Listeners
 document.addEventListener("DOMContentLoaded", getUsers);
-document.addEventListener("DOMContentLoaded", initMap);
 
 // Functions for pop-up forms
 function openForm() {
@@ -21,10 +20,10 @@ function getUsers() {
 }
 
 function initMap() {
-  var options = {
+  const options = {
     zoom: 12,
     center: { lat: 29.7604, lng: -95.3698 }
   };
 
-  var map = new google.maps.Map(document.getElementById("map"), options);
+  const map = new google.maps.Map(document.getElementById("map"), options);
 }
