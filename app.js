@@ -32,17 +32,20 @@ function getUsers() {
 // Format Meetup Form Inputs to be used to persit data and add markers to the DOM
 function createMeetup(e) {
   e.preventDefault();
-  let coords = getCoords(addressInput.value);
+  getCoords(addressInput.value)
+    .then(position => myMap.addMarker(position))
+    .then(closeForm())
+    .then(alert("Meet Up Created!"));
 }
 
 // Get Coordinates from Address
 function getCoords(address) {
   const location = address;
-  fetch(
+  return fetch(
     `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=AIzaSyB0Qt4jCMA75sX8axKugOR-eAmvnw_x8zU`
   )
     .then(res => res.json())
     .then(addressObj => {
-      coords = addressObj.results[0].geometry.location;
+      return addressObj.results[0].geometry.location;
     });
 }
