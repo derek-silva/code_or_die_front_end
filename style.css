@@ -70,11 +70,16 @@
 }
 
 #map {
-  height: 575px;
+  height: 700px;
   width: 100%;
 }
 
 /* input {
   box-sizing: border-box;
   width: 100%;
+} */
+
+/* nav {
+  font-family: Arial, Helvetica, sans-serif
+  letter-spacing: 3px;
 } */
