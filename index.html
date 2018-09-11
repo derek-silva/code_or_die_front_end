@@ -22,7 +22,7 @@
 			<i class="large material-icons left" style="padding-left:1%">code</i>
 			<ul id="nav-mobile" class="right hide-on-med-and-down">
 				<li><a href="#">Hello, User!</a></li>
-				<li><a href="#">About</a></li>
+				<li><a href="#" onclick="toggleAbout()">About</a></li>
 				<li>
 					<a href="#" class="btn-floating pulse red">
 						<i class="material-icons" onclick="openForm()">add</i>
@@ -38,13 +38,9 @@
 	<!-- FORM HTML -->
 	<div class="form-popup row white" id="myForm">
 		<h5 class="left col s12" style="padding:1%;font-weight:bold;">Create Code Meet Up</h5>
-		<form class="form-container col s12">
+		<form class="form-container col s12" id="meetup-form">
 			<div class="row">
-				<div class="input-field col s6">
-					<input id="name" type="text" required>
-					<label for="name">Name</label>
-				</div>
-				<div class="input-field col s6">
+				<div class="input-field col s12">
 					<input id="topic" type="text" required>
 					<label for="topic">Topic</label>
 				</div>
@@ -78,11 +74,13 @@
 		</form>
 	</div>
 
-	<script src="app.js"></script>
+	<!-- Scripts -->
 	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 	 crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0Qt4jCMA75sX8axKugOR-eAmvnw_x8zU&callback=initMap"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0Qt4jCMA75sX8axKugOR-eAmvnw_x8zU&libraries=geometry"></script>
+	<script src="map.js"></script>
+	<script src="app.js"></script>
 </body>
 
 </html>
