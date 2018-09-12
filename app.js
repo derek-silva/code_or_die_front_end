@@ -13,7 +13,7 @@ const meetUpForm = document.getElementById("meetup-form");
 const meetUpFormDiv = document.getElementById("myFormDiv");
 const logInForm = document.querySelector(".login");
 const logInStyle = document.querySelector("#login-style");
-const navMobile = document.getElementById("nav-mobile");
+const hello = document.getElementById("hello");
 
 // Event Listeners
 document.addEventListener("DOMContentLoaded", getUsers);
@@ -32,7 +32,7 @@ function createLogin(e) {
   lastName = event.target.children[1].value;
   userName = event.target.children[2].value;
   userEmail = event.target.children[3].value;
-  navMobile.children[0].innerHTML = `<a href="#">Hello, ${userName}!</a>`;
+  hello.innerHTML = `<a href="#">Hello, ${userName}!</a>`;
   if (typeof Storage !== "undefined") {
     // Store
     localStorage.setItem("username", userName);

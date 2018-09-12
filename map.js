@@ -32,9 +32,9 @@ function htmlForInfoWindow(address) {
   		<br>
   		<li>Date: ${dateInput.value}</li>
   		<br>
-  		<li>Start Time: ${startTimeInput.value}</li>
+  		<li>Start Time: ${convertTime24to12(startTimeInput.value)}</li>
   		<br>
-  		<li>End Time: ${endTimeInput.value}</li>
+  		<li>End Time: ${convertTime24to12(endTimeInput.value)}</li>
   	</ul>
   </div>
   `;
