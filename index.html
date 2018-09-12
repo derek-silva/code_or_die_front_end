@@ -1,16 +1,15 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
-	<head id= "background">
-	<meta charset="UTF-8">
-	<title>Login Form</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
-	<style id= 'login-style'> /* Login style */
+	<head id="background">
+		<meta charset="UTF-8">
+		<title>Login Form</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+		<style id='login-style'>
+			/* Login style */
 			@import url(https://fonts.googleapis.com/css?family=Open+Sans);
 		  .btn { display: inline-block; *display: inline; *zoom: 1; padding: 4px 10px 4px; margin-bottom: 0; font-size: 13px; line-height: 18px; color: #333333; text-align: center;text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75); vertical-align: middle; background-color: #f5f5f5; background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6); background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6); background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6)); background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6); background-image: -o-linear-gradient(top, #ffffff, #e6e6e6); background-image: linear-gradient(top, #ffffff, #e6e6e6); background-repeat: repeat-x; filter: progid:dximagetransform.microsoft.gradient(startColorstr=#ffffff, endColorstr=#e6e6e6, GradientType=0); border-color: #e6e6e6 #e6e6e6 #e6e6e6; border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); border: 1px solid #e6e6e6; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); cursor: pointer; *margin-left: .3em; }
 		  .btn:hover, .btn:active, .btn.active, .btn.disabled, .btn[disabled] { background-color: #e6e6e6; }
@@ -70,28 +69,28 @@
 		  input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2); }
 		  
 		  </style>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-	 crossorigin="anonymous">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" href="style.css">
-	<title>Code Or Die!</title>
-</head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+		<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+		 integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" href="style.css">
+		<title>Code Or Die!</title>
+	</head>
 
-<body class="black">
+<body>
 
 	<!-- NAV BAR HTML -->
 	<nav>
-		<div class="nav-wrapper" id="grad">
+		<div class="nav-wrapper grad">
 			<a href="#" class="brand-logo center">Code or Die!</a>
 			<i class="large material-icons left" style="padding-left:1%">code</i>
 			<ul id="nav-mobile" class="right hide-on-med-and-down">
 				<li><a href="#" onclick="toggleAbout()">About</a></li>
 				<li>
-					<a href="#" class="btn-floating grey pulse" id="grad">
+					<a href="#" class="btn-floating grey pulse grad">
 						<i class="material-icons" onclick="openForm()">add</i>
 					</a>
 				</li>
@@ -102,15 +101,15 @@
 	<!-- LOGIN HTML -->
 	<div class="login">
 		<h1>Login</h1>
-			<form method="post">
-				<input type="text" name="f" placeholder="First Name" required="required" />
-				<input type="text" name="l" placeholder="Last Name" required="required" />
-				<input type="text" name="u" placeholder="Username" required="required" />
-				<input type="email" name="e" placeholder="Email" required="required" />
-				<button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
-			</form>
+		<form method="post">
+			<input type="text" name="f" placeholder="First Name" required="required" />
+			<input type="text" name="l" placeholder="Last Name" required="required" />
+			<input type="text" name="u" placeholder="Username" required="required" />
+			<input type="email" name="e" placeholder="Email" required="required" />
+			<button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+		</form>
 	</div>
-	
+
 	<!-- LOCAL STORAGE HTML -->
 	<div id="result"></div>
 
@@ -148,10 +147,10 @@
 				</div>
 			</div>
 			<div class="center">
-				<button type="submit" class="btn red">Create Code Meet Up</button>
+				<button type="submit" class="btn grad">Create Code Meet Up</button>
 			</div>
 			<div class="center">
-				<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+				<button type="button" class="btn" onclick="closeForm()">Close</button>
 			</div>
 		</form>
 	</div>
