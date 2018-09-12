@@ -1,7 +1,27 @@
 var googleMap;
 let infoWindowOpen = false;
 
+function convertTime24to12(time24) {
+  var tmpArr = time24.split(":"),
+    time12;
+  if (+tmpArr[0] == 12) {
+    time12 = tmpArr[0] + ":" + tmpArr[1] + " pm";
+  } else {
+    if (+tmpArr[0] == 00) {
+      time12 = "12:" + tmpArr[1] + " am";
+    } else {
+      if (+tmpArr[0] > 12) {
+        time12 = +tmpArr[0] - 12 + ":" + tmpArr[1] + " pm";
+      } else {
+        time12 = +tmpArr[0] + ":" + tmpArr[1] + " am";
+      }
+    }
+  }
+  return time12;
+}
+
 function htmlForInfoWindow(address) {
+  console.log(startTimeInput.value);
   return `
   <div class="bold">
   	<ul>
@@ -13,9 +33,9 @@ function htmlForInfoWindow(address) {
   		<br>
   		<li>Date: ${dateInput.value}</li>
   		<br>
-  		<li>Start Time: ${startTimeInput.value}</li>
+  		<li>Start Time: ${convertTime24to12(startTimeInput.value)}</li>
   		<br>
-  		<li>End Time: ${endTimeInput.value}</li>
+  		<li>End Time: ${convertTime24to12(endTimeInput.value)}</li>
   	</ul>
   </div>
   `;
