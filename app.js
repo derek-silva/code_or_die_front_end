@@ -24,13 +24,6 @@ function closeForm() {
   meetUpFormDiv.style.display = "none";
 }
 
-// // GET users from API
-// function getUsers() {
-//   fetch(URL)
-//     .then(res => res.json())
-//     .then(console.log);
-// }
-
 // Format Meetup Form Inputs to be used to persit data and add markers to the DOM
 function createMeetup(e) {
   e.preventDefault();
