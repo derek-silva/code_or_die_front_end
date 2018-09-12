@@ -1,5 +1,6 @@
 // URLs
-const URL = `http://localhost:3000/users`;
+const USERS_URL = `http://localhost:3000/users`;
+const MEETUPS_URL = `http://localhost:3000/meetups`;
 
 // UI Elements
 const topicInput = document.getElementById("topic");
@@ -22,8 +23,9 @@ logInForm.addEventListener("submit", createLogin);
 //User Login
 function createLogin(e) {
   e.preventDefault();
+  // document.styleSheets[5].disabled = true
   logInForm.style.display = "none";
-  // logInStyle.remove();
+  logInStyle.remove();
   document.getElementById('map').style.display = "block";
   document.querySelector('nav').style.display = "block";
   firstName = event.target.children[0].value
@@ -54,7 +56,7 @@ function createLogin(e) {
 
 //Persist User Data
 function persistUsers() {
-  fetch(URL, {
+  fetch(USERS_URL, {
     method: 'POST',
     body: JSON.stringify({
         first_name: firstName,
@@ -82,11 +84,17 @@ function closeForm() {
 
 // GET users from API
 function getUsers() {
-  fetch(URL)
+  fetch(USERS_URL)
     .then(res => res.json())
     .then(displayUsers);
 }
 
+// GET meetups from API
+function getMeetups() {
+  fetch(MEETUPS_URL)
+    .then(res => res.json())
+    .then(console.log);
+}
 // Display Users
 function displayUsers(data) {
   const container = document.getElementById("result")
