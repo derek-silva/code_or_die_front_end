@@ -81,18 +81,17 @@
 	<title>Code Or Die!</title>
 </head>
 
-<body class="grey darken-3">
+<body class="black">
 
 	<!-- NAV BAR HTML -->
 	<nav>
-		<div class="nav-wrapper grey darken-3">
+		<div class="nav-wrapper" id="grad">
 			<a href="#" class="brand-logo center">Code or Die!</a>
 			<i class="large material-icons left" style="padding-left:1%">code</i>
 			<ul id="nav-mobile" class="right hide-on-med-and-down">
-				<li><a href="#">Hello, User!</a></li>
 				<li><a href="#" onclick="toggleAbout()">About</a></li>
 				<li>
-					<a href="#" class="btn-floating pulse red">
+					<a href="#" class="btn-floating grey pulse" id="grad">
 						<i class="material-icons" onclick="openForm()">add</i>
 					</a>
 				</li>
@@ -119,7 +118,7 @@
 	<div id="map"></div>
 
 	<!-- FORM HTML -->
-	<div class="form-popup row white" id="myForm">
+	<div class="form-popup row white" id="myFormDiv">
 		<h5 class="left col s12" style="padding:1%;font-weight:bold;">Create Code Meet Up</h5>
 		<form class="form-container col s12" id="meetup-form">
 			<div class="row">
