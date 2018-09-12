@@ -13,6 +13,7 @@ const logInForm = document.querySelector('.login');
 const logInStyle = document.querySelector('#login-style');
 const navMobile = document.getElementById("nav-mobile");
 
+
 // Event Listeners
 document.addEventListener("DOMContentLoaded", getUsers);
 meetUpForm.addEventListener("submit", createMeetup);
@@ -30,7 +31,25 @@ function createLogin(e) {
   userName = event.target.children[2].value
   userEmail = event.target.children[3].value
   navMobile.children[0].innerHTML = `<a href="#">Hello, ${userName}!</a>`
-  persistUsers()
+  if (typeof(Storage) !== "undefined") {
+    // Store
+    localStorage.setItem("username", userName);
+    localStorage.setItem("email", userEmail);
+    localStorage.setItem("firstname", firstName);
+    localStorage.setItem("lastname", lastName);
+    if (document.getElementById(userName) === null && document.getElementById(userEmail) === null && document.getElementById(firstName) === null && document.getElementById(lastName) === null) {
+      // debugger
+      persistUsers()
+      document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+    }
+    else if (userName === document.getElementById(userName).innerText && userEmail === document.getElementById(userEmail).innerText && firstName === document.getElementById(firstName).innerText && lastName === document.getElementById(lastName).innerText) {
+    // Retrieve
+    document.getElementById("result").innerHTML = localStorage.getItem("username");
+    document.getElementById("result").innerHTML = localStorage.getItem("email");
+    document.getElementById("result").innerHTML = localStorage.getItem("firstname");
+    document.getElementById("result").innerHTML = localStorage.getItem("lastname");
+    } 
+  }
 }
 
 //Persist User Data
@@ -50,6 +69,8 @@ function persistUsers() {
   })
 }
 
+//Local Storage 
+
 
 // Functions for pop-up form
 function openForm() {
@@ -63,8 +84,22 @@ function closeForm() {
 function getUsers() {
   fetch(URL)
     .then(res => res.json())
-    .then(console.log);
+    .then(displayUsers);
 }
+
+// Display Users
+function displayUsers(data) {
+  const container = document.getElementById("result")
+  data.forEach((user) => {
+    return container.innerHTML += `<ul id=${user.user_name}> ${user.user_name} </ul>
+                                  <ul id=${user.email}> ${user.email} </ul>
+                                  <ul id=${user.first_name}> ${user.first_name} </ul>
+                                  <ul id=${user.last_name}> ${user.last_name} </ul>
+                                  `
+  })
+  container.style.display = 'none'
+}
+
 
 // Format Meetup Form Inputs to be used to persit data and add markers to the DOM
 function createMeetup(e) {
