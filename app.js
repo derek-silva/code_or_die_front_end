@@ -2,6 +2,8 @@
 const USERS_URL = `http://localhost:3000/users`;
 const MEETUPS_URL = `http://localhost:3000/meetups`;
 
+let user_id;
+
 // UI Elements
 const topicInput = document.getElementById("topic");
 const addressInput = document.getElementById("address");
@@ -45,7 +47,6 @@ function createLogin(e) {
       document.getElementById(firstName) === null &&
       document.getElementById(lastName) === null
     ) {
-      // debugger
       persistUsers();
       document.getElementById("result").innerHTML =
         "Sorry, your browser does not support Web Storage...";
@@ -83,10 +84,12 @@ function persistUsers() {
       email: userEmail
     }),
     headers: {
-      Accept: "application/json",
+      "Accept": "application/json",
       "Content-Type": "application/json"
     }
-  });
+  }).then(response => response.json()).then((data)=> {
+    user_id = data.id;
+  })
 }
 
 //Local Storage
@@ -132,9 +135,30 @@ function closeForm() {
   meetUpFormDiv.style.display = "none";
 }
 
+//Persist Meetups
+function persistMeetUps() {
+  fetch(MEETUPS_URL, {
+    method: 'POST',
+    body: JSON.stringify({
+          topic: topicInput.value,
+          address: addressInput.value,
+          description: descriptionInput.value,
+          date: dateInput.value,
+          start_time: startTimeInput.value,
+          end_time: endTimeInput.value,
+          user: user_id
+      }),
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    }
+  })
+}
+
 // Format Meetup Form Inputs to be used to persit data and add markers to the DOM
 function createMeetup(e) {
   e.preventDefault();
+  persistMeetUps()
   getLocationObj(addressInput.value)
     .then(locationObj => myMap.addMarker(locationObj))
     .then(closeForm());
@@ -169,13 +193,6 @@ function displayUsers(data) {
   container.style.display = "none";
 }
 
-// Format Meetup Form Inputs to be used to persit data and add markers to the DOM
-function createMeetup(e) {
-  e.preventDefault();
-  getLocationObj(addressInput.value)
-    .then(locationObj => myMap.addMarker(locationObj))
-    .then(closeForm());
-}
 
 // Get Location Info
 function getLocationObj(address) {
