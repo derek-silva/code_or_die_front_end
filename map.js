@@ -20,21 +20,21 @@ function convertTime24to12(time24) {
   return time12;
 }
 
-function htmlForInfoWindow(address) {
+function htmlForInfoWindow({address, topic, description, dateInput, startTimeInput, endTimeInput}) {
   return `
   <div class="bold">
   	<ul>
-  		<li>Topic: ${topicInput.value}</li>
+  		<li>Topic: ${topic}</li>
   		<br>
   		<li>Address: ${address}</li>
   		<br>
-  		<li>Description: ${descriptionInput.value}</li>
+  		<li>Description: ${description}</li>
   		<br>
-  		<li>Date: ${dateInput.value}</li>
+  		<li>Date: ${dateInput}</li>
   		<br>
-  		<li>Start Time: ${convertTime24to12(startTimeInput.value)}</li>
+  		<li>Start Time: ${startTimeInput}</li>
   		<br>
-  		<li>End Time: ${convertTime24to12(endTimeInput.value)}</li>
+  		<li>End Time: ${endTimeInput}</li>
   	</ul>
   </div>
   `;
@@ -57,13 +57,20 @@ class Maps {
   }
 
   addMarker(locationObj, title) {
+    const address = locationObj.address;
+    const topic = topicInput.value;
+    const description = descriptionInput.value;
+    const dateInp = dateInput.value;
+    const startTimeInp = convertTime24to12(startTimeInput.value);
+    const endTimeInp = convertTime24to12(endTimeInput.value);
+
     const newMarker = new google.maps.Marker({
       position: locationObj.coords,
       map: googleMap,
       title: title
     });
     const infowindow = new google.maps.InfoWindow({
-      content: `${htmlForInfoWindow(locationObj.address)}`
+      content: `${htmlForInfoWindow({address, topic, description, dateInput: dateInp, startTimeInput: startTimeInp, endTimeInput: endTimeInp})}`
     });
     newMarker.addListener("click", () => {
       if (infoWindowOpen) infowindow.close();

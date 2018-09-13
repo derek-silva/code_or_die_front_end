@@ -34,6 +34,7 @@ function createLogin(e) {
   lastName = event.target.children[1].value;
   userName = event.target.children[2].value;
   userEmail = event.target.children[3].value;
+  persistUsers(firstName, lastName, userName, userEmail);
   hello.innerHTML = `<a href="#">Hello, ${userName}!</a>`;
   if (typeof Storage !== "undefined") {
     // Store
@@ -47,7 +48,6 @@ function createLogin(e) {
       document.getElementById(firstName) === null &&
       document.getElementById(lastName) === null
     ) {
-      persistUsers();
       document.getElementById("result").innerHTML =
         "Sorry, your browser does not support Web Storage...";
     } else if (
@@ -74,7 +74,7 @@ function createLogin(e) {
 }
 
 //Persist User Data
-function persistUsers() {
+function persistUsers(firstName, lastName, userName, userEmail) {
   fetch(USERS_URL, {
     method: "POST",
     body: JSON.stringify({
@@ -89,7 +89,50 @@ function persistUsers() {
     }
   }).then(response => response.json()).then((data)=> {
     user_id = data.id;
+    return getAssociatedData(user_id);
   })
+}
+
+function getAssociatedData(user_id) {
+  const addresses = [];
+  const user_meetups = []
+
+  fetch(USERS_URL + '/' + user_id)
+      .then(response => response.json())
+      .then((data) => {
+        data.meetups.map(x => { 
+          var obj = {
+            address: x.address,
+            topic: x.topic,
+            description: x.description,
+            dateInput: x.date,
+            startTimeInput: x.start_time,
+            endTimeInput: x.end_time
+          };
+
+          addresses.push(x.address);
+          user_meetups.push(obj)
+        })
+     })
+    .then( () => {
+        return addresses.forEach((address, i) => {
+
+          getLocationObj(address).then( (locationObj) => { 
+          
+          const newMarker = new google.maps.Marker({ position: locationObj.coords, map: googleMap, title: 'meetup' })
+
+          const infowindow = new google.maps.InfoWindow({content: `${htmlForInfoWindow(user_meetups[i])}`});
+        
+          newMarker.addListener("click", () => {
+            if (infoWindowOpen) infowindow.close();
+            else infowindow.open(myMap, newMarker);
+
+           infoWindowOpen = !infoWindowOpen;})
+
+
+        })})})
+
+
 }
 
 //Local Storage
@@ -123,7 +166,7 @@ function getMeetups() {
 
 // START DEREK
 
-// document.addEventListener("DOMContentLoaded", getUsers);
+document.addEventListener("DOMContentLoaded", getUsers);
 meetUpForm.addEventListener("submit", createMeetup);
 
 // Functions for pop-up form
@@ -137,6 +180,8 @@ function closeForm() {
 
 //Persist Meetups
 function persistMeetUps() {
+  user_id
+  debugger
   fetch(MEETUPS_URL, {
     method: 'POST',
     body: JSON.stringify({
@@ -146,7 +191,7 @@ function persistMeetUps() {
           date: dateInput.value,
           start_time: startTimeInput.value,
           end_time: endTimeInput.value,
-          user: user_id
+          user_id: user_id
       }),
     headers: {
         'Accept': 'application/json',
@@ -157,6 +202,7 @@ function persistMeetUps() {
 
 // Format Meetup Form Inputs to be used to persit data and add markers to the DOM
 function createMeetup(e) {
+  debugger
   e.preventDefault();
   persistMeetUps()
   getLocationObj(addressInput.value)
